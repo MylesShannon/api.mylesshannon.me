@@ -3,16 +3,28 @@ app.controller('IndexCtrl', function($http, $rootScope) {
 })
 .controller('AboutCtrl', function($rootScope) {
 	$rootScope.session.transitioning = false;
-
 })
 .controller('NotesCtrl', function($http, $rootScope) {
 	$rootScope.session.transitioning = false;
 	self = this;
-	$http({url: $rootScope.session.url+'/note', method: 'GET'}).then(function(resp) {
-		self.notes = resp.data;
-	}).catch(function() {
-		self.notes = "AJAX error";
-	});
+	this.disable = false;
+	this.getNotes = function() {
+		$http({url: $rootScope.session.url+'/note', method: 'GET'}).then(function(resp) {
+			self.notes = resp.data;
+		}).catch(function() {
+			self.notes = "AJAX error";
+		});
+	};
+	this.noteSubmit = function() {
+		self.disable = true;
+		$http({url: $rootScope.session.url+'/note', method: 'POST', params: {'title': self.form.title, 'body': self.form.body}}).then(function(resp) {
+			console.log('Note submitted!');
+			self.disable = false;
+		}).catch(function() {
+			console.log('AJAX error @ noteSubmit');
+			self.disable = false;
+		});
+	}
 })
 .controller('NavCtrl', function($scope, $rootScope, $auth, auth) {
 	var self = this;

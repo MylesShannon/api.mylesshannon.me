@@ -10,7 +10,10 @@ use App\User;
 class UserController extends Controller
 {
     //
-    public function getUser() {
-    	//print_r(User::find());
+    public function getUser(Request $request)
+    {
+        $user = User::find($request['user']['sub']);
+
+        return $user;
     }
 }

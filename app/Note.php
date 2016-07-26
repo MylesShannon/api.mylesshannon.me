@@ -11,8 +11,8 @@ class Note extends Model
         'owner', 'title', 'subtitle', 'body', 'body_color', 'text_color'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->hasMany(Note::class);
+        return $this->belongsTo(User::class);
     }
 }

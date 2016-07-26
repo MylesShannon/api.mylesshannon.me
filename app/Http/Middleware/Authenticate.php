@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Firebase\JWT\JWT;
-use Log;
 
 class Authenticate
 {
@@ -36,8 +35,6 @@ class Authenticate
         {
             $token = explode(' ', $request->header('Authorization'))[1];
             $payload = (array) JWT::decode($token, env('GOOGLE_CLIENT_SECRET'), array('HS256'));
-
-            Log:info($payload);
 
             if ($payload['exp'] < time())
             {

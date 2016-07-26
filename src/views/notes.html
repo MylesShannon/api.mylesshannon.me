@@ -1,3 +1,25 @@
 <div class="row">
-	<div class="col-md-3" data-ng-repeat="note in notes.notes"></div>
+	<div class="col-md-12">
+		<form ng-submit="notes.noteSubmit()" name="noteForm">
+			<div class="form-group">
+				<label>Title</label>
+				<input type="text" name="title" class="form-control" ng-model="notes.form.title" required />
+			</div>
+
+			<div class="form-group">
+				<label>Body</label>
+				<textarea type="text" name="body" class="form-control" ng-model="notes.form.body" required /> 
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-lg" ng-disabled="notes.form.title == undefined || notes.form.body.length == undefined || notes.disable">save</button>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<button data-ng-click="notes.getNotes()" class="btn btn-primary btn-lg">get notes</button>
+		<code>{{ notes.notes | json }}</code>
+	</div> 
 </div>
