@@ -1,27 +1,67 @@
-# Laravel PHP Framework
+# QuickJot  |  "Making it quick"
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## This project demonstrates the usage of the following technologies
+* Laravel for a JSON API back-end
+* AngularJS for a webapp front-end
+* Vagrant configured for VirtualBox and AWS deployment
+* Grunt for running project front-end building
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## How to intall and run
+### Required packages to be installed globally on local machine
+* [PHP](http://php.net/manual/en/install.php)
+* [Composer](https://getcomposer.org/download)
+* [Laravel](https://laravel.com/docs/5.2/installation)
+* [nodejs/npm](https://nodejs.org/en/download)
+* [bower](https://bower.io/#install-bower)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### For vagrant deployment
+* [vagrant](https://www.vagrantup.com/downloads.html)
+* vagrant 'vagrant-aws' plugin => `vagrant plugin install vagrant-aws`
+* vagrant 'dummy vagrant-aws' box => `vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box`
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* Amazon Web Services account (optional)
 
-## Official Documentation
+### Acquiring required libraries and dependencies for compiling src (front-end)
+```sh
+npm install
+bower install
+composer install
+```
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Running/building this project...
+### For development
+#### With vagrant
+```sh
+grunt build:front:dev
+vagrant up --provider="virtualbox"
+```
+If your vagrant VirtualBox is already up:
+```sh
+grunt build:front:dev
+vagrant reload
+```
+#### Without vagrant
+```sh
+php artisan serve
+```
+### For pushing production with vagrant in AWS
+```sh
+grunt prod
+vagrant up --provider="aws"
+```
+If your vagrant EC2 instance is already up and your ready for redeployment, run:
+```sh
+grunt prod
+vagrant reload
+```
+## Configuring for AWS vagrant provider
+### How to configure Vagrantfile for AWS deployment
+* Change lines labeled "static configurations"
+* Then follow the next step, "How to configure AWS credentials for vagrant"
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+### How to configure AWS credentials for Vagrantfile
+Follow [these instructions](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) to install `awscli`, and then run and follow the prompts with:
+```sh
+aws configure
+```
+Vagrant automatically looks for credentials at "~/.aws/credentials" on `vagrant up --provider="aws"`
