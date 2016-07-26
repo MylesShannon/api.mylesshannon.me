@@ -1,0 +1,79 @@
+{
+  "name": "notes",
+  "description": "A webapp for taking notes with an AngularJS front-end and a PHP back-end",
+  "main": "./dist/front/index.html",
+  "authors": [
+    "Myles Shannon"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "note",
+    "personal",
+    "PHP",
+    "MySQL",
+    "Laravel"
+  ],
+  "homepage": "https://notes.mylesshannon.me",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "^2.2.3",
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "font-awesome": "^4.6.3",
+    "angular-xeditable": "https://github.com/vitalets/angular-xeditable.git#^0.2.0",
+    "bootstrap": "^3.3.6",
+    "satellizer": "^0.15.3"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "js": "dist/jquery.min.js"
+    },
+    "angular": {
+      "js": [
+        "angular.min.js",
+        "angular.min.js.map"
+      ]
+    },
+    "angular-route": {
+      "js": [
+        "angular-route.min.js",
+        "angular-route.min.js.map"
+      ]
+    },
+    "angular-cookie": {
+      "js": "angular-cookie.min.js"
+    },
+    "angular-xeditable": {
+      "js": "dist/js/xeditable.min.js",
+      "css": "dist/css/xeditable.min.css"
+    },
+    "font-awesome": {
+      "css": "css/font-awesome.min.css",
+      "fonts": "fonts/*"
+    },
+    "bootstrap": {
+      "js": "dist/js/bootstrap.min.js",
+      "fonts": "dist/fonts/*"
+    },
+    "satellizer": {
+      "js": "dist/satellizer.min.js"
+    },
+    "angular-toastr": {
+      "js": "dist/angular-toastr.tpls.min.js",
+      "css": "dist/angular-toastr.min.css"
+    },
+    "angular-animate": {
+      "js": [
+        "angular-animate.min.js", 
+        "angular-animate.min.js.map"
+      ]
+    },
+    "bootstrap-sass": {}
+  }
+}

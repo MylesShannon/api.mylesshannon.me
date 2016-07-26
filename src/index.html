@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html data-ng-app="notesApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<base href="/" />
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="../../favicon.ico">
+		<title>Notes Front-end</title>
+		<link rel="stylesheet" href="libs/angular-toastr/css/angular-toastr.min.css" />
+		<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="styles.min.css" />
+	</head>
+	<body>
+		<!-- Fixed navbar -->
+		<nav data-ng-controller="NavCtrl as nav" class="navbar navbar-default navbar-fixed-top" data-ng-cloak>
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">JotQuick</a>
+				</div>
+				<div data-ng-if="!session.transitioning" id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li data-ng-class="{active: nav.active==='about'}"><a href="/about">About</a></li>
+						<li data-ng-if="session.loggedIn" data-ng-class="{active: nav.active==='notes'}"><a href="/notes">My Notes</li></li>
+						<li data-ng-if="session.loggedIn"><a data-ng-click="nav.logout()">Logout</a></li>
+					</ul>
+					<ul class="nav navbar-right">
+						<li data-ng-if="!session.loggedIn" data-ng-class="{active: nav.active==='login'}"><a id="signin-button" data-ng-click="nav.login('google')"><img ng-src="{{session.url + '/assets/signin_button.png'}}" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Page content -->
+		<div class="container">
+			<div data-ng-view></div>
+		</div>
+
+		<!-- Sticky footer -->
+		<footer data-ng-controller="FootCtrl as foot" class="footer">
+			<div class="container">
+				<i class="fa fa-github fa-3x" aria-hidden="true"></i><span>Check out the Github repo <a href="https://github.com/MylesShannon/quick-jot" target="_blank">here</a></span>
+			</div>
+		</footer>
+
+		<script type="text/javascript" src="libs/jquery/js/jquery.min.js"></script>
+		<script type="text/javascript" src="libs/angular/js/angular.min.js"></script>
+		<script type="text/javascript" src="libs/angular-route/js/angular-route.min.js"></script>
+		<script type="text/javascript" src="libs/angular-animate/js/angular-animate.min.js"></script>
+		<script type="text/javascript" src="libs/satellizer/js/satellizer.min.js"></script>
+		<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="libs/angular-toastr/js/angular-toastr.tpls.min.js"></script>
+		<script type="text/javascript" src="app.min.js"></script>
+	</body>
+</html>
