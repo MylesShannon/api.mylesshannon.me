@@ -6,7 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "barryvdh/laravel-cors": "^0.8.1",
+        "laravel/socialite": "^2.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "firebase/php-jwt": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

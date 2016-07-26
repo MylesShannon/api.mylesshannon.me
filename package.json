@@ -1,12 +1,51 @@
 {
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "A webapp for taking notes with an AngularJS front-end and a Laravel back-end",
+  "main": "./public/index.html",
   "private": true,
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MylesShannon/quick-jot.git"
+  },
+  "keywords": [
+    "notes",
+    "personal",
+    "PHP",
+    "MySQL",
+    "Laravel",
+    "AngularJS"
+  ],
+  "author": "Myles Shannon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MylesShannon/quick-jot/issues"
+  },
+  "homepage": "https://jot.mylesshannon.me",
   "devDependencies": {
     "gulp": "^3.9.1",
     "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "bootstrap-sass": "^3.0.0",
+    "connect-livereload": "^0.5.4",
+    "connect-modrewrite": "^0.9.0",
+    "grunt": "^1.0.1",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-composer": "^0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-htmlmin": "^2.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-html-build": "^0.6.0",
+    "grunt-ng-annotate": "^2.0.2",
+    "jshint-stylish": "^2.2.0"
   }
 }

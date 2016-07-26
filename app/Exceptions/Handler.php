@@ -45,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        // If "NotFoundHttpException" is thrown (missing route)
+        if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
+        {
+            // redirect to "/" route, replace with more powerful route
+            //return redirect('/');
+        }
         return parent::render($request, $e);
     }
 }
