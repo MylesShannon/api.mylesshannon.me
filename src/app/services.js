@@ -1,4 +1,6 @@
 app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr, $http) {
+	var self = this;
+
 	this.check = function(state) {
 		var deffered = $q.defer();
 		function requireIn(state) {
@@ -11,15 +13,9 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 
 		}
 
-		function getUserData() {
-			$http({url: $rootScope.session.url+'/user', method: 'GET'}).then(function(resp) {
-				$rootScope.session.user = resp.data;
-			});
-		}
-
 		if(requireIn(state) ) {
 			if($auth.isAuthenticated() ) {
-				getUserData();
+				$rootScope.session.user = self.getUserData();
 				$rootScope.session.loggedIn = true;
 				deffered.resolve();
 			} else {
@@ -29,7 +25,7 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 			}
 		} else {
 			if($auth.isAuthenticated() ) {
-				getUserData();
+				$rootScope.session.user = self.getUserData();
 				$rootScope.session.loggedIn = true;
 				deffered.resolve();
 			} else {
@@ -41,8 +37,14 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 		return deffered.promise;
 	}
 
+	self.getUserData = function() {
+		$http({url: $rootScope.session.url+'/user', method: 'GET'}).then(function(resp) {
+			return resp.data;
+		});
+	}
+
 	this.successIn = function(where) {
-		getUserData();
+		$rootScope.session.user = self.getUserData();
 		$rootScope.session.transitioning = false;
 		$rootScope.session.loggedIn = true;
 		toastr.success('You were logged in!', 'Success');

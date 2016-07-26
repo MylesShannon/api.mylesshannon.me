@@ -21,16 +21,6 @@ app.config(function($routeProvider, $locationProvider, $authProvider, toastrConf
 			}
 		}
 	})
-	.when('/about', {
-		templateUrl: 'views/about.html',
-		controller: 'AboutCtrl',
-		controllerAs: 'about',
-		resolve: {
-			check: function(auth) {
-				return auth.check('about');
-			}
-		}
-	})
 	.when('/notes', {
 		templateUrl: 'views/notes.html',
 		controller: 'NotesCtrl',

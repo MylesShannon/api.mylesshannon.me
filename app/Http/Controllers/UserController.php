@@ -12,8 +12,11 @@ class UserController extends Controller
     //
     public function getUser(Request $request)
     {
-        $user = User::find($request['user']['sub']);
+        return User::find($request['user']['sub']);
+    }
 
-        return $user;
+    public function getUserById(Request $request)
+    {
+        return;
     }
 }

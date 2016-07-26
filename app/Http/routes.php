@@ -15,12 +15,13 @@
 Route::group(['middleware' => 'auth', 'prefix' => '/note'], function () {
 	Route::get('/', 'NoteController@getNotes');
 	Route::post('/' , 'NoteController@addNote');
-    Route::get('/{id}', 'NoteController@getNoteById');
+	Route::delete('/{noteId}' , 'NoteController@removeNote');
+    //Route::get('/{noteId}', 'NoteController@getNoteById');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => '/user'], function () {
 	Route::get('/', 'UserController@getUser');
-	Route::get('/{id}', 'UserController@getUserById');
+	// Route::get('/{userId}', 'UserController@getUserById');
 });
 
 Route::post('auth/google', 'Auth\AuthController@googleAuth');
