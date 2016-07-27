@@ -16,7 +16,7 @@ composer global require "laravel/installer"
 cd "/vagrant" && composer install
 sudo chgrp -R www-data /vagrant
 sudo chmod -R 775 /vagrant
-# sudo chmod -R 777 /vagrant/storage
+sudo chmod -R 777 /vagrant/storage
 sudo a2dissite 000-default
 mkdir "/home/ubuntu/logs"
 printf "<VirtualHost *:80>\n	DocumentRoot /vagrant/public\n	ServerName api.mylesshannon.me\n	ServerAlias *.mylesshannon.me\n	ErrorLog /home/ubuntu/logs/api-error.log\n	CustomLog /home/ubuntu/logs/api-access.log combined\n	<Directory /vagrant/public>\n		# Ignore the .htaccess file in this directory\n		#Options Indexes FollowSymLinks\n		AllowOverride None\n		Require all granted\n		# Make pretty URLs\n		<IfModule mod_rewrite.c>\n			<IfModule mod_negotiation.c>\n				Options -MultiViews\n			</IfModule>\n			RewriteEngine On\n			# Redirect Trailing Slashes If Not A Folder...\n			RewriteCond %{REQUEST_FILENAME} !-d\n			RewriteRule ^(.*)/$ /$1 [L,R=301]\n			# Handle Front Controller...\n			RewriteCond %{REQUEST_FILENAME} !-d\n			RewriteCond %{REQUEST_FILENAME} !-f\n			RewriteRule ^ index.php [L]\n			# Handle Authorization Header\n			RewriteCond %{HTTP:Authorization} .\n			RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]\n		</IfModule>\n	</Directory>\n</VirtualHost>" | sudo tee /etc/apache2/sites-available/api.conf

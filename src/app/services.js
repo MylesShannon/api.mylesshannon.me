@@ -38,9 +38,13 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 	};
 
 	self.getUserData = function() {
-		$http({url: $rootScope.session.api+'/user', method: 'GET'}).then(function(resp) {
-			return resp.data;
-		});
+		if($rootScope.session.loggedIn === false) {
+			$http({url: $rootScope.session.api+'/user', method: 'GET'}).then(function(resp) {
+				return resp.data;
+			});
+		} else {
+			return $rootScope.session.user;
+		}
 	};
 
 	this.successIn = function(where) {
