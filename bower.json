@@ -71,6 +71,9 @@
       "js": "dist/angular-toastr.tpls.min.js",
       "css": "dist/angular-toastr.min.css"
     },
+    "angular-animate": {
+      "js": "angular-animate.min.js"
+    },
     "angular-google-gapi": {
       "js": "dist/angular-google-gapi.min.js"
     },
