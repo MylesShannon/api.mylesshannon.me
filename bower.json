@@ -28,7 +28,10 @@
     "font-awesome": "^4.6.3",
     "angular-xeditable": "https://github.com/vitalets/angular-xeditable.git#^0.2.0",
     "bootstrap": "^3.3.6",
-    "satellizer": "^0.15.3"
+    "satellizer": "^0.15.3",
+    "angular-toastr": "^2.0.0",
+    "angular-animate": "^1.5.8",
+    "angular-google-gapi": "^1.0.0"
   },
   "exportsOverride": {
     "jquery": {
@@ -68,11 +71,8 @@
       "js": "dist/angular-toastr.tpls.min.js",
       "css": "dist/angular-toastr.min.css"
     },
-    "angular-animate": {
-      "js": [
-        "angular-animate.min.js", 
-        "angular-animate.min.js.map"
-      ]
+    "angular-google-gapi": {
+      "js": "dist/angular-google-gapi.min.js"
     },
     "bootstrap-sass": {}
   }
