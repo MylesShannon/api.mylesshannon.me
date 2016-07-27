@@ -1,7 +1,7 @@
 {
-  "name": "notes",
-  "description": "A webapp for taking notes with an AngularJS front-end and a PHP back-end",
-  "main": "./dist/front/index.html",
+  "name": "quickjot",
+  "description": "A webapp for taking notes with an AngularJS front-end and a Laravel back-end",
+  "main": "./front/index.html",
   "authors": [
     "Myles Shannon"
   ],
@@ -13,7 +13,7 @@
     "MySQL",
     "Laravel"
   ],
-  "homepage": "https://notes.mylesshannon.me",
+  "homepage": "https://jot.mylesshannon.me",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -72,7 +72,10 @@
       "css": "dist/angular-toastr.min.css"
     },
     "angular-animate": {
-      "js": "angular-animate.min.js"
+      "js": [
+        "angular-animate.min.js",
+        "angular-animate.min.js.map"
+      ]
     },
     "angular-google-gapi": {
       "js": "dist/angular-google-gapi.min.js"

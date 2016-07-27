@@ -24,10 +24,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/user'], function () {
 	// Route::get('/{userId}', 'UserController@getUserById');
 });
 
-Route::post('auth/google', 'Auth\AuthController@googleAuth');
+Route::get('/' , function(){
+    return response()->make('API is available' , 200);
+});
 
-// If no routes match above & we're not production, send "./public/index.html" instead
-Route::any('{path?}', function()
-{
-    return File::get(public_path().'/index.html');
-})->where("path", ".+");
+Route::post('auth/google', 'Auth\AuthController@googleAuth');

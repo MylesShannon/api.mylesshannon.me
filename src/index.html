@@ -41,7 +41,7 @@
 						<li data-ng-if="session.loggedIn" data-ng-class="{active: nav.active==='notes'}"><a href="/notes">My Notes</li></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li data-ng-if="!session.loggedIn" data-ng-class="{active: nav.active==='login'}"><a id="signin-button" data-ng-click="nav.login('google')"><img ng-src="{{session.url + '/assets/signin_button.png'}}" /></a></li>
+						<li data-ng-if="!session.loggedIn" data-ng-class="{active: nav.active==='login'}"><a id="signin-button" data-ng-click="nav.login('google')"><img ng-src="{{session.host + '/assets/signin_button.png'}}" /></a></li>
 						<li data-ng-if="session.loggedIn"><a data-ng-click="nav.logout()">Logout</a></li>
 					</ul>
 				</div>

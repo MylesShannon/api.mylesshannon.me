@@ -1,8 +1,8 @@
 {
-  "name": "notes",
+  "name": "quickjot",
   "version": "1.0.0",
   "description": "A webapp for taking notes with an AngularJS front-end and a Laravel back-end",
-  "main": "./public/index.html",
+  "main": "./front/index.html",
   "private": true,
   "scripts": {
     "prod": "gulp --production",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MylesShannon/quick-jot.git"
+    "url": "git+https://github.com/MylesShannon/quickjot.git"
   },
   "keywords": [
     "notes",
@@ -23,7 +23,7 @@
   "author": "Myles Shannon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MylesShannon/quick-jot/issues"
+    "url": "https://github.com/MylesShannon/quickjot/issues"
   },
   "homepage": "https://jot.mylesshannon.me",
   "devDependencies": {

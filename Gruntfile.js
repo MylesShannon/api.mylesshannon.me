@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 					hostname: '0.0.0.0',
 					livereload: 3500,
 					open: true,
-					base: './public/',
+					base: './front/',
 					middleware: function(connect, options, middlewares) {
 						var rules = [
 						'!\\.html|\\.woff|\\.eot|\\.ttf|\\.js|\\.css|\\.svg|\\.jp(e?)g|\\.png|\\.gif$ /index.html'
@@ -29,15 +29,15 @@ module.exports = function(grunt) {
 			},
 			front: {
 				src: './src/styles.scss',
-				dest: './public/styles.min.css'
+				dest: './front/styles.min.css'
 			}
 		},
 		copy: {
 			front: {
 				files: [
-					{expand: true, cwd: './src/', src: 'analytics.js', dest: './public/'},
-					{expand: true, cwd: './src/views/', src: '*.html', dest: './public/views'},
-					{expand: true, cwd: './src/assets/', src: '**', dest: './public/assets'}
+					{expand: true, cwd: './src/', src: 'analytics.js', dest: './front/'},
+					{expand: true, cwd: './src/views/', src: '*.html', dest: './front/views'},
+					{expand: true, cwd: './src/assets/', src: '**', dest: './front/assets'}
 				]
 			}
 		},
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 			},
 			front: {
 				src: '.tmp/app.js',
-				dest: './public/app.min.js'
+				dest: './front/app.min.js'
 			}
 		},
 		htmlbuild: {
@@ -93,8 +93,8 @@ module.exports = function(grunt) {
 					removeComments: true
 				},
 				files: [
-					{expand: true, cwd: './src/app/views/', src: '**/*.html', dest: './public/views/'},
-					{'./public/index.html': '.tmp/index.html'}
+					{expand: true, cwd: './src/app/views/', src: '**/*.html', dest: './front/views/'},
+					{'./front/index.html': '.tmp/index.html'}
 				]
 			}
 		},
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
 				options: {
 					install: false,
 					layout: "byComponent",
-					targetDir: './public/libs/'
+					targetDir: './front/libs/'
 				}
 			}
 		},

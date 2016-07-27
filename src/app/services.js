@@ -35,13 +35,13 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 		}
 
 		return deffered.promise;
-	}
+	};
 
 	self.getUserData = function() {
-		$http({url: $rootScope.session.url+'/user', method: 'GET'}).then(function(resp) {
+		$http({url: $rootScope.session.api+'/user', method: 'GET'}).then(function(resp) {
 			return resp.data;
 		});
-	}
+	};
 
 	this.successIn = function(where) {
 		$rootScope.session.user = self.getUserData();
@@ -49,14 +49,14 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 		$rootScope.session.loggedIn = true;
 		toastr.success('You were logged in!', 'Success');
 		return $location.path('/'+where);
-	}
+	};
 
 	this.failedIn = function() {
 		$rootScope.session.transitioning = false;
 		$rootScope.session.loggedIn = false;
 		toastr.error('Something went wrong logging you in!', 'Error');
 		return;
-	}
+	};
 
 	this.successOut = function() {
 		$rootScope.session.user = null;
@@ -64,12 +64,12 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 		$rootScope.session.loggedIn = false;
 		toastr.success('You were logged out!', 'Success');
 		return $location.path('/');
-	}
+	};
 
 	this.failedOut = function() {
 		$rootScope.session.transitioning = false;
 		$rootScope.session.loggedIn = true;
 		toastr.error('Something went wrong logging you out!', 'Error');
 		return;
-	}
+	};
 });

@@ -1,3 +1,3 @@
 app.run(function($rootScope, constants) {
-	$rootScope.session = {url: constants.host, transitioning: true};
+	$rootScope.session = {host: constants.host, api: constants.api, transitioning: true};
 });

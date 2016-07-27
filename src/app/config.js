@@ -1,8 +1,8 @@
-app.config(function($routeProvider, $locationProvider, $authProvider, toastrConfig) {
+app.config(function($routeProvider, $locationProvider, $authProvider, toastrConfig, constants) {
 
 	$locationProvider.html5Mode(true);
 
-	$authProvider.baseUrl = '/';
+	$authProvider.baseUrl = constants.api;
 	$authProvider.google({
 		clientId: '786999100982-9ugrvcg6gfh8412vjaqecj3c9i6376up.apps.googleusercontent.com'
 	});

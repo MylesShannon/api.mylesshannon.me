@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "quickjot",
+    "description": "A webapp for taking notes with an AngularJS front-end and a Laravel back-end",
+    "keywords": ["note", "personal", "PHP", "MySQL", "Laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -48,6 +48,6 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "vendor"
     }
 }
