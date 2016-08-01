@@ -10,70 +10,67 @@ app.service('auth', function($rootScope, $auth, $location, $q, constants, toastr
 				}
 			}
 			return false;
-
 		}
 
-		if(requireIn(state) ) {
-			if($auth.isAuthenticated() ) {
-				$rootScope.session.user = self.getUserData();
-				$rootScope.session.loggedIn = true;
-				deffered.resolve();
+		if($auth.isAuthenticated() ) {
+			if($rootScope.session.loggedIn === false) {
+				self.getUserData().then(function(resp) {
+					$rootScope.session.user = resp;
+					$rootScope.session.loggedIn = true;
+					deffered.resolve();
+				});
 			} else {
-				$rootScope.session.loggedIn = false;
-				$location.path('/');
+				$rootScope.session.loggedIn = true;
 				deffered.resolve();
 			}
 		} else {
-			if($auth.isAuthenticated() ) {
-				$rootScope.session.user = self.getUserData();
-				$rootScope.session.loggedIn = true;
-				deffered.resolve();
-			} else {
-				$rootScope.session.loggedIn = false;
-				deffered.resolve();
-			}
+			$rootScope.session.loggedIn = false;
+			if(requireIn(state)) { $location.path('/'); }
+			deffered.resolve();
 		}
-
 		return deffered.promise;
 	};
 
-	self.getUserData = function() {
-		if($rootScope.session.loggedIn === false) {
-			$http({url: $rootScope.session.api+'/user', method: 'GET'}).then(function(resp) {
-				return resp.data;
+	self.login = function(provider) {
+		$rootScope.session.transitioning = true;
+		setTimeout(function() {toastr.info('Logging you in...');}, 600);
+		$auth.authenticate(provider).then(function() {
+			self.getUserData().then(function(resp) {
+				$rootScope.session.user = resp;
+				$rootScope.session.transitioning = false;
+				$rootScope.session.loggedIn = true;
+				toastr.success('You were logged in!', 'Success');
+				return $location.path('/notes');
 			});
-		} else {
-			return $rootScope.session.user;
-		}
+		}).catch(function() {
+			$rootScope.session.transitioning = false;
+			$rootScope.session.loggedIn = false;
+			toastr.error('Something went wrong logging you in!', 'Error');
+			return;
+		});
 	};
 
-	this.successIn = function(where) {
-		$rootScope.session.user = self.getUserData();
-		$rootScope.session.transitioning = false;
-		$rootScope.session.loggedIn = true;
-		toastr.success('You were logged in!', 'Success');
-		return $location.path('/'+where);
+	self.logout = function() {
+		$rootScope.session.transitioning = true;
+		$auth.logout().then(function() {
+			$rootScope.session.user = null;
+			$rootScope.session.transitioning = false;
+			$rootScope.session.loggedIn = false;
+			toastr.success('You were logged out!', 'Success');
+			return $location.path('/');
+		}).catch(function() {
+			$rootScope.session.transitioning = false;
+			$rootScope.session.loggedIn = true;
+			toastr.error('Something went wrong logging you out!', 'Error');
+			return;
+		});
 	};
 
-	this.failedIn = function() {
-		$rootScope.session.transitioning = false;
-		$rootScope.session.loggedIn = false;
-		toastr.error('Something went wrong logging you in!', 'Error');
-		return;
-	};
-
-	this.successOut = function() {
-		$rootScope.session.user = null;
-		$rootScope.session.transitioning = false;
-		$rootScope.session.loggedIn = false;
-		toastr.success('You were logged out!', 'Success');
-		return $location.path('/');
-	};
-
-	this.failedOut = function() {
-		$rootScope.session.transitioning = false;
-		$rootScope.session.loggedIn = true;
-		toastr.error('Something went wrong logging you out!', 'Error');
-		return;
+	self.getUserData = function() {
+		var deffered = $q.defer();
+		$http({url: $rootScope.session.api+'/user', method: 'GET'}).then(function(resp) {
+			deffered.resolve(resp.data);
+		});
+		return deffered.promise;
 	};
 });

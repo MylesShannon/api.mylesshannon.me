@@ -11,12 +11,12 @@ return [
      | to accept any value.
      |
      */
-    'supportsCredentials' => false,
-    'allowedOrigins' => ['*'],
+    'supportsCredentials' => true,
+    'allowedOrigins' => ['https://www.mylesshannon.me', 'https://jot.mylesshannon.me'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
-    'maxAge' => 60,
+    'maxAge' => 120,
     'hosts' => [],
 ];
 

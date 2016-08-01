@@ -1,9 +1,6 @@
 app.controller('IndexCtrl', function($http, $rootScope) {
 	$rootScope.session.transitioning = false;
 })
-.controller('AboutCtrl', function($rootScope) {
-	$rootScope.session.transitioning = false;
-})
 .controller('NotesCtrl', function($http, $rootScope, toastr) {
 	$rootScope.session.transitioning = false;
 	self = this;
@@ -40,28 +37,18 @@ app.controller('IndexCtrl', function($http, $rootScope) {
 		});
 	};
 })
-.controller('NavCtrl', function($scope, $rootScope, $auth, auth) {
+.controller('NavCtrl', function($scope, $rootScope, auth) {
 	var self = this;
 	$scope.$on('$routeChangeSuccess', function(event, next, last) {
 		self.active = next.$$route.controllerAs;
 	});
 
 	this.login = function(provider) {
-		$rootScope.session.transitioning = true;
-		$auth.authenticate(provider).then(function() {
-			auth.successIn('notes');
-		}).catch(function() {
-			auth.failedIn();
-		});
+		auth.login(provider);
 	};
 
 	this.logout = function() {
-		$rootScope.session.transitioning = true;
-		$auth.logout().then(function() {
-			auth.successOut();
-		}).catch(function() {
-			auth.failedIn();
-		});
+		auth.logout();
 	};
 })
 .controller('FootCtrl', function() {

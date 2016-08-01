@@ -24,8 +24,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/user'], function () {
 	// Route::get('/{userId}', 'UserController@getUserById');
 });
 
-Route::get('/' , function(){
-    return response()->make('API is available' , 200);
-});
-
 Route::post('auth/google', 'Auth\AuthController@googleAuth');
+
+Route::get('/', function() {
+    return Response::make('API is available', 200);
+});

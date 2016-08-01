@@ -1,8 +1,22 @@
-app.config(function($routeProvider, $locationProvider, $authProvider, toastrConfig, constants) {
+app.config(function($provide, $routeProvider, $locationProvider, $httpProvider, $authProvider, toastrConfig, constants) {
+	$provide.factory('XSRFInterceptor', function($cookies) {
+		return {
+			request: function(config) {
+				var cookie = $cookies.get('XSRF-TOKEN');
+				if(cookie) {
+					config.headers['X-XSRF-TOKEN'] = cookie;
+				}
+				return config;
+			}
+		};
+	});
+	$httpProvider.interceptors.push('XSRFInterceptor');
+	$httpProvider.defaults.withCredentials = true;
 
 	$locationProvider.html5Mode(true);
 
 	$authProvider.baseUrl = constants.api;
+	$authProvider.withCredentials = true;
 	$authProvider.google({
 		clientId: '786999100982-9ugrvcg6gfh8412vjaqecj3c9i6376up.apps.googleusercontent.com'
 	});
@@ -34,6 +48,7 @@ app.config(function($routeProvider, $locationProvider, $authProvider, toastrConf
 
 	angular.extend(toastrConfig, {
 		positionClass: 'toast-top-center',
-		timeOut: 3000
+		timeOut: 3000,
+		maxOpened: 1
 	});
 });

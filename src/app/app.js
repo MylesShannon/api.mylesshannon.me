@@ -1,1 +1,1 @@
-var app = angular.module('notesApp', ['ngRoute', 'satellizer', 'ngAnimate', 'toastr']);
+var app = angular.module('notesApp', ['ngRoute', 'satellizer', 'ngAnimate', 'toastr', 'ngCookies']);

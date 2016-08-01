@@ -10,11 +10,6 @@ use App\Note;
 class NoteController extends Controller
 {
 	//
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function getNotes(Request $request) {
     	return Note::where('user_id', '=', $request['user']['sub'])->get();
     }
