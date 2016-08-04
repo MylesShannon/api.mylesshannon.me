@@ -1,10 +1,8 @@
-# QuickJot  |  "Making it quick"
+# api.mylesshannon.me
 
-## This project demonstrates the usage of the following technologies
-* Laravel for a JSON API back-end
-* AngularJS for a webapp front-end
+## This project demonstrates the usage of:
+* Laravel as a JSON API back-end
 * Vagrant configured for VirtualBox and AWS deployment
-* Grunt for running project front-end building
 
 ## How to intall and run
 ### Required packages to be installed globally on local machine
@@ -12,7 +10,6 @@
 * [Composer](https://getcomposer.org/download)
 * [Laravel](https://laravel.com/docs/5.2/installation)
 * [nodejs/npm](https://nodejs.org/en/download)
-* [bower](https://bower.io/#install-bower)
 
 ### For vagrant deployment
 * [vagrant](https://www.vagrantup.com/downloads.html)
@@ -21,10 +18,9 @@
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * Amazon Web Services account (optional)
 
-### Acquiring required libraries and dependencies for compiling src (front-end)
+### Acquiring required libraries and dependencies
 ```sh
-npm install
-bower install
+composer global require "laravel/installer"
 composer install
 ```
 
@@ -32,26 +28,22 @@ composer install
 ### For development
 #### With vagrant
 ```sh
-grunt build:front:dev
 vagrant up --provider="virtualbox"
 ```
-If your vagrant VirtualBox is already up:
+If your vagrant VirtualBox is already up, run instead:
 ```sh
-grunt build:front:dev
 vagrant reload
 ```
 #### Without vagrant
 ```sh
 php artisan serve
 ```
-### For pushing production with vagrant in AWS
+### For production with vagrant to AWS
 ```sh
-grunt prod
 vagrant up --provider="aws"
 ```
-If your vagrant EC2 instance is already up and your ready for redeployment, run:
+If your vagrant EC2 instance is already up and your ready for redeployment, run instead:
 ```sh
-grunt prod
 vagrant reload
 ```
 ## Configuring for AWS vagrant provider
@@ -65,3 +57,5 @@ Follow [these instructions](http://docs.aws.amazon.com/cli/latest/userguide/inst
 aws configure
 ```
 Vagrant automatically looks for credentials at "~/.aws/credentials" on `vagrant up --provider="aws"`
+
+#### also requires a .env config file

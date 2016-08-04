@@ -26,6 +26,7 @@
   },
   "homepage": "https://api.mylesshannon.me",
   "devDependencies": {
+    "bootstrap-sass": "^3.0.0",
     "gulp": "^3.9.1",
     "laravel-elixir": "^5.0.0"
   }

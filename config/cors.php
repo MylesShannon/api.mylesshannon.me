@@ -12,7 +12,7 @@ return [
      |
      */
     'supportsCredentials' => true,
-    'allowedOrigins' => ['https://www.mylesshannon.me', 'https://jot.mylesshannon.me'],
+    'allowedOrigins' => [env(CORS_CONFIG, 'http://localhost:8080')],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
