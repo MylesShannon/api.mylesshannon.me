@@ -1,4 +1,4 @@
-# api.mylesshannon.me
+# php.mylesshannon.me
 
 ## This project demonstrates the usage of:
 * Laravel as a JSON API back-end
