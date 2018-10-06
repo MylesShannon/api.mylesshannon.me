@@ -12,7 +12,7 @@ return [
      |
      */
     'supportsCredentials' => true,
-    'allowedOrigins' => [env(CORS_CONFIG, 'http://localhost:8080')],
+    'allowedOrigins' => [env('CORS_CONFIG', 'http://localhost:8080')],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],

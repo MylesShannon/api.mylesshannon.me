@@ -48,17 +48,17 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => env('SQ_DB_DATABASE', database_path('development.sqlite')),
             'prefix' => '',
         ],
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('MYSQL_DB_HOST', 'localhost'),
+            'port' => env('MYSQL_DB_PORT', '3306'),
+            'database' => env('MYSQL_DB_DATABASE', 'forge'),
+            'username' => env('MYSQL_DB_USERNAME', 'forge'),
+            'password' => env('MYSQL_DB_PASSWORD', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
